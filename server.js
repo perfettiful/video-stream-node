@@ -100,7 +100,7 @@ var Storage = multer.diskStorage({
       callback(null, "./assets/videos");
   },
   filename: function(req, file, callback) {
-      callback("_"+originalname);
+      callback("_"+ file.originalname);
       // callback(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
   }
 });
