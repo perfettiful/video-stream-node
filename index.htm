@@ -1,10 +1,43 @@
 <html>
+
+<head>
+  <title>Video stream sample</title>
+
   <head>
-    <title>Video stream sample</title>
+    <meta charset="utf-8" />
+    <title>Upload images to server using Node JS</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.js"></script>
+    <script src="https://code.jquery.com/jquery.form.min.js"></script>
   </head>
-  <body>
-    <video id="videoPlayer" controls muted="muted" autoplay> 
-      <source src="/video" type="video/mp4">
-    </video>
-  </body>
+</head>
+
+<body>
+  <video id="videoPlayer" controls muted="muted" autoplay>
+    <source src="/video" type="video/mp4">
+  </video>
+
+  <form id="frmUploader" enctype="multipart/form-data" action="api/Upload/" method="post">
+    <input type="file" name="imgUploader" multiple />
+    <input type="submit" name="submit" id="btnSubmit" value="Upload" />
+  </form>
+
+  <script>
+    $(document).ready(function () {
+      var options = {
+        beforeSubmit: showRequest, 
+        // pre-submit callback
+         success: showResponse 
+        // post-submit callback 
+      }; 
+        // bind to the form's submit event 
+        $('#frmUploader').submit(function () { $(this).ajaxSubmit(options); // always return false to prevent standard browser submit and page navigation
+           return false; }); }); // pre-submit callback 
+           function showRequest(formData, jqForm, options) 
+           { alert('Uploading is starting.'); return true; } 
+           // post-submit callback 
+           function showResponse(responseText, statusText, xhr, $form) { 
+              alert('status: ' + statusText + '\n\nresponseText: \n' + responseText ); }
+  </script>
+</body>
+
 </html>
