@@ -12,6 +12,7 @@
   "author": "perfettiful",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.15.3",
     "nodemon": "^1.11.0"
   }
